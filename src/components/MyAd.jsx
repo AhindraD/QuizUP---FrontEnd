@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useContext } from "react";
-import UserContext from "../Contexts/UserContext";
+import {UserContext} from "../Contexts/UserContext";
 import ProductCards from './ProductCards';
 import { useNavigate } from 'react-router-dom';
 

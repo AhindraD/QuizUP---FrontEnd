@@ -2,7 +2,7 @@ import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import SignUp from './components/Signup';
 import LogIn from './components/Login';
-import UserContext from './Contexts/UserContext';
+import {UserContext} from './Contexts/UserContext';
 import { useState } from 'react';
 import DisplayProducts from './components/DisplayProducts';
 import MyAd from './components/MyAd';

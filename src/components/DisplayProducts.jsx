@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import { blue, cyan, pink, red } from "@mui/material/colors";
 
 import { useContext } from "react";
-import UserContext from "../Contexts/UserContext";
+import {UserContext} from "../Contexts/UserContext";
 import { useNavigate, Route, Routes } from 'react-router-dom';
 import AllAdHome from './AllAdHome';
 import MyAd from './MyAd';

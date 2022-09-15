@@ -44,6 +44,7 @@ export default function LogIn() {
                     <div className="logo">
                         <img src="./images/logo2.png" alt="" />
                     </div>
+                    <p className='greet'>What's up, Leader!</p>
                 </div>
             </div>
             <div className="login-right">

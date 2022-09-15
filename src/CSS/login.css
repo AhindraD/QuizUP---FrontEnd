@@ -10,12 +10,35 @@
     height: 100%;
     width: 500px;
     background-color: #c60017;
-    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 30px;
 }
+
+.login-card {
+    min-height: 70%;
+    width: 90%;
+    border-radius: 11px;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logo {
+    width: 80%;
+    height: 120px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 .login-right {
     height: 100%;

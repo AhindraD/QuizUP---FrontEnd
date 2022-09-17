@@ -37,11 +37,11 @@ export default function SignUp() {
             return;
         }
         console.log(respData);
-        setUser(() => respData.user);
-        //setToken(() => respData.accessToken);
-        //setRefreshToken(() => respData.refreshToken);
-        //localStorage.setItem("access_token", respData.accessToken);
-        //localStorage.setItem("refresh_token", respData.refreshToken);
+        setUser(() => respData.saveUser);
+        setToken(() => respData.accessToken);
+        setRefreshToken(() => respData.refreshToken);
+        localStorage.setItem("access_token", respData.accessToken);
+        localStorage.setItem("refresh_token", respData.refreshToken);
         localStorage.setItem("user_data", JSON.stringify(respData.existingUser));
     };
 

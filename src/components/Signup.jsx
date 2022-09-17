@@ -36,7 +36,7 @@ export default function SignUp() {
             window.alert(respData.error);
             return;
         }
-        //console.log(respData);
+        console.log(respData);
         setUser(() => respData.user);
         //setToken(() => respData.accessToken);
         //setRefreshToken(() => respData.refreshToken);

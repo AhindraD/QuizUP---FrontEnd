@@ -33,7 +33,7 @@ export default function LogIn() {
             window.alert(respData.error);
             return;
         }
-        //console.log(respData);
+        console.log(respData);
         setUser(() => respData.existingUser);
         setToken(() => respData.accessToken);
         setRefreshToken(() => respData.refreshToken);

@@ -1,168 +1,77 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import "../CSS/login.css"
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../Contexts/UserContext";
+import { useNavigate, Link } from 'react-router-dom';
 
-import { useContext } from "react";
-import {UserContext} from "../Contexts/UserContext";
-import { useNavigate } from 'react-router-dom';
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                AhindraD
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-const theme = createTheme();
 
 export default function SignUp() {
     let navigate = useNavigate();
-    let { user, setUser } = useContext(UserContext);
+    let { user, setUser, token, setToken, refreshToken, setRefreshToken } = useContext(UserContext);
+    let [email, setEmail] = useState('');
+    let [name, setName] = useState('');
+    let [password, setPassword] = useState('');
+    let [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        let newUser = {
-            name: data.get('firstName') + data.get('lastName'),
-            email: data.get('email'),
-            password: data.get('password'),
-            confirmPassword: data.get('confirmPassword'),
+    const handleSubmit = async () => {
+        let userInfo = {
+            name,
+            email,
+            password,
+            confirmPassword,
         };
-        //https://marketplace-ebay.herokuapp.com/
-        let response = await fetch("http://localhost:8000/auth/signup", {
+        let response = await fetch("https://kahoot.up.railway.app/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(newUser),
+            body: JSON.stringify(userInfo),
         })
             .catch(error => {
-                window.alert(error);
+                alert(error);
                 return;
             });
-
-        let respData = await response;
-        setUser(() => respData);
-        navigate('/ads');
+        let respData = await response.json();
+        if (respData.error != undefined) {
+            window.alert(respData.error);
+            return;
+        }
         //console.log(respData);
+        setUser(() => respData.user);
+        //setToken(() => respData.accessToken);
+        //setRefreshToken(() => respData.refreshToken);
+        //localStorage.setItem("access_token", respData.accessToken);
+        //localStorage.setItem("refresh_token", respData.refreshToken);
+        localStorage.setItem("user_data", JSON.stringify(respData.existingUser));
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign up
-                    </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="confirmPassword"
-                                    label="Confirm Password"
-                                    type="password"
-                                    id="confirmPassword"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
-                                />
-                            </Grid>
-                        </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign Up
-                        </Button>
-                        <Grid container justifyContent="flex-end">
-                            <Grid item>
-                                <Link href="/login" variant="body2">
-                                    Already have an account? Log in
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-                <Copyright sx={{ mt: 5 }} />
-            </Container>
-        </ThemeProvider>
+        <div className='login-cont'>
+            <div className="login-left">
+                <div className='login-card'>
+                    <div className="logo">
+                        <img src="./images/logo2.png" alt="" />
+                    </div>
+                    <p className='greet'>What's up, Leader!</p>
+                    <div className="name">
+                        <input type="text" placeholder='Name' onChange={(e) => setName(() => e.target.value)} />
+                    </div>
+                    <div className="email">
+                        <input type="email" placeholder='Email' onChange={(e) => setEmail(() => e.target.value)} />
+                    </div>
+                    <div className="password">
+                        <input type="password" placeholder='Password' onChange={(e) => setPassword(() => e.target.value)} />
+                    </div>
+                    <div className="password">
+                        <input type="password" placeholder='Confirm Password' onChange={(e) => setConfirmPassword(() => e.target.value)} />
+                    </div>
+                    <p className='toggle'>Already have an account? <Link to={"/login"}><b>Log in then!</b></Link> </p>
+                    <button className='login-bttn' onClick={(e) => handleSubmit()}>Sign Up</button>
+                </div>
+            </div>
+            <div className="login-right">
+                <img src="./images/quizUp-BG.jpg" alt="Photo by Vasily Koloda on Unsplash" />
+            </div>
+        </div>
     );
 }

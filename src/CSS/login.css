@@ -14,11 +14,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 0 25px;
 }
 
 .login-card {
-    min-height: 80%;
+    min-height: 60%;
     width: 95%;
     border-radius: 11px;
     background-color: #f2f2f2;
@@ -44,7 +44,76 @@
 .greet {
     font-weight: 700;
     font-size: 35px;
+    margin-bottom: 10px;
 }
+
+.email,
+.password,
+.name {
+    width: 100%;
+    height: 33px;
+}
+
+.email input,
+.password input,
+.name input {
+    cursor: pointer;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: 2px solid rgb(238, 238, 238);
+    padding: 0 40px;
+    font-size: 19px;
+}
+
+.name input {
+    background: url("./user.png") no-repeat left;
+    background-position: 3px;
+    background-size: 25px;
+    background-color: #ffffff;
+}
+.email input {
+    background: url("./message.png") no-repeat left;
+    background-position: 5px;
+    background-size: 22px;
+    background-color: #ffffff;
+}
+
+.password input {
+    background: url("./lock.png") no-repeat left;
+    background-position: 5px;
+    background-size: 22px;
+    background-color: #ffffff;
+}
+
+.toggle {
+    margin: 10px 0;
+    font-weight: 400;
+}
+
+.toggle b {
+    color: rgb(0, 149, 218);
+}
+
+.login-bttn {
+    width: 100%;
+    padding: 5px 0;
+    background-color: #eb001b;
+    color: white;
+    font-size: 17px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 0px #3800069e;
+    transition: all 300ms ease;
+}
+
+.login-bttn:hover {
+    box-shadow: 1px 1px 0 0px #3800069e;
+}
+
+
 
 .login-right {
     height: 100%;

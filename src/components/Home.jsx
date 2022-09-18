@@ -9,7 +9,7 @@ function Home() {
     let navigate = useNavigate();
     let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
-    let [subjects, setSubjects] = useState(true);
+    let [subjects, setSubjects] = useState(null);
     let [showCard, setShowCard] = useState(false);
     let [newSub, setNewSub] = useState("");
 
@@ -82,7 +82,7 @@ function Home() {
                                     <div className="sub-owner">{elem.owner.name}</div>
                                 </div>
                                 <div className="c3">
-                                    <button className="edit">Edit</button>
+                                    <button className="edit" onClick={() => navigate(`/home/${elem._id}`)}>Edit</button>
                                     <button className="start">Start</button>
                                     <p className="time">
                                         Last edit:

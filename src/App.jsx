@@ -5,6 +5,7 @@ import LogIn from './components/Login';
 import { UserContext } from './Contexts/UserContext';
 import { useState } from 'react';
 import Home from './components/Home';
+import Quiz from './components/Quiz';
 
 function App() {
   const goTo = useNavigate();
@@ -20,14 +21,14 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, token, setToken, refreshToken, setRefreshToken,logout }}>
+    <UserContext.Provider value={{ user, setUser, token, setToken, refreshToken, setRefreshToken, logout }}>
       <div className="App">
         <Routes>
           <Route path='/' element={<LogIn />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/home' element={<Home />} />
-          {/* (/*) in above line : to make the /ads capable of going deeper i.e. make it a parent */}
+          <Route path='/home/:id' element={<Quiz />} />
         </Routes>
       </div >
     </UserContext.Provider>

@@ -51,11 +51,20 @@ function Home() {
                                 <div className="c3">
                                     <button className="edit">Edit</button>
                                     <button className="start">Start</button>
-                                    <p className="time">{elem.createdAt}</p>
+                                    <p className="time">
+                                        Last edit:
+                                        &nbsp; {new Date(elem.createdAt).toLocaleDateString()}
+                                        &nbsp; {new Date(elem.createdAt).toLocaleTimeString()}</p>
                                 </div>
                             </div>
                         )
                     })}
+                    <div className="subject-add">
+                        <div className="c">
+                            <img src="./images/logo-icon2.png" alt="" />
+                            <p>Create Template</p>
+                        </div>
+                    </div>
                 </div>
             }
         </div >

@@ -6,6 +6,7 @@ import { UserContext } from './Contexts/UserContext';
 import { useState } from 'react';
 import Home from './components/Home';
 import Quiz from './components/Quiz';
+import StartGame from './components/StartGame';
 
 function App() {
   const goTo = useNavigate();
@@ -28,7 +29,8 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/home/:id' element={<Quiz />} />
+          <Route path='/subject/:id' element={<Quiz />} />
+          <Route path='/start/:id' element={<StartGame />} />
         </Routes>
       </div >
     </UserContext.Provider>

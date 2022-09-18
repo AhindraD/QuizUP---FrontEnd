@@ -32,5 +32,5 @@ Estimated time: 36hrs
 Milestone 1 completed in around 11 hours 00mins.
 
 ### MISC
-21 Sept. 2022
+19 Sept. 2022
 11.30 - 13.00: Fixed some bugs and UI issues as per the feedback

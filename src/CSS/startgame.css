@@ -1,0 +1,38 @@
+.start-cont {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #c60017;
+    overflow: hidden;
+}
+
+.start-card {
+    height: 90%;
+    width: 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    padding: 30px;
+    gap: 10px;
+}
+
+.start-top {
+    height: 90px;
+    width: 360px;
+    cursor: pointer;
+}
+
+.start-top img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.start-bottom {
+    flex: 1;
+    width: 100%;
+}

@@ -82,8 +82,9 @@ function Home() {
                                     <div className="sub-owner">{elem.owner.name}</div>
                                 </div>
                                 <div className="c3">
-                                    <button className="edit" onClick={() => navigate(`/home/${elem._id}`)}>Edit</button>
-                                    <button className="start">Start</button>
+                                    <button className="edit" onClick={() => navigate(`/subject/${elem._id}`)}>Edit</button>
+
+                                    <button className="start" onClick={() => navigate(`/start/${elem._id}`)}>Start</button>
                                     <p className="time">
                                         Last edit:
                                         &nbsp; {new Date(elem.createdAt).toLocaleDateString()}

@@ -185,6 +185,27 @@ function Quiz() {
         fetchData();
     }
 
+    async function deleteQuiz(quizID) {
+        let response = await fetch(`https://kahoot.up.railway.app/quiz/delete/${quizID}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        })
+            .catch(error => {
+                window.alert(error);
+                return;
+            });
+        let respData = await response.json();
+        if (respData.error != undefined) {
+            window.alert(respData.error);
+            return;
+        }
+        console.log(respData.done);
+        fetchData();
+    }
+
 
     return (
         <div className='quiz-cont'>
@@ -202,7 +223,7 @@ function Quiz() {
                             return (
                                 <div className="quiz-ind" key={elem._id}>
                                     <button className="edit-bttn" onClick={() => changeEditSpace(elem)}>Edit</button>
-                                    <button className="delete-bttn" onClick={() => newQuiz()}>Delete</button>
+                                    <button className="delete-bttn" onClick={() => deleteQuiz(elem._id)}>Delete</button>
                                 </div>
                             )
                         })}

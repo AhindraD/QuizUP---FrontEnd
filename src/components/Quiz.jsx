@@ -1,6 +1,6 @@
 import React from 'react'
 import "../CSS/quiz.css"
-import { useEffect, useState, useContext,useRef } from 'react'
+import { useEffect, useState, useContext, useRef } from 'react'
 import { UserContext } from "../Contexts/UserContext";
 import axiosClient from '../ApiConfig';
 import { useNavigate, Link, useParams } from 'react-router-dom';
@@ -52,7 +52,7 @@ function Quiz() {
                     <div className="quiz-left">
                         <div className="add-quiz">
                             <div className="plus">
-                                <img src="https://static.vecteezy.com/system/resources/previews/005/094/789/original/medical-plus-icon-with-red-and-white-color-free-vector.jpg" alt="" />
+                                <img src="https://raw.githubusercontent.com/AhindraD/QuizUP---FrontEnd/master/public/images/plus.png" alt="" />
                             </div>
                             <button className="add-quiz-bttn">Add Question</button>
                         </div>

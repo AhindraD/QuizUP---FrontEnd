@@ -10,6 +10,9 @@ function Home() {
     let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     let [subjects, setSubjects] = useState(true);
+    let [showCard, setShowCard] = useState(false);
+    let [newSub, setNewSub] = useState("");
+
     useEffect(() => {
         if (user == null) {
             setUser(() => JSON.parse(localStorage.getItem("user_data")));
@@ -17,14 +20,44 @@ function Home() {
             setRefreshToken(() => localStorage.getItem("refresh_token"));
         }
         fetchData();
-        async function fetchData() {
-            let resp = await axiosClient.get("/subject/all");
-            setSubjects(() => resp.data);
-            console.log(resp.data);
-            setLoading(false);
-        }
     }, [])
 
+    async function fetchData() {
+        let resp = await axiosClient.get("/subject/all");
+        setSubjects(() => resp.data);
+        console.log(resp.data);
+        setLoading(false);
+    }
+
+    async function addNewSub() {
+        //console.log([newSub, user._id]);
+        if (newSub !== "") {
+            let dataObj = {
+                name: newSub,
+                owner: user._id
+            };
+            //console.log(dataObj);
+            await fetch("https://kahoot.up.railway.app/subject/add", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dataObj),
+            })
+                .catch(error => {
+                    window.alert(error);
+                    return;
+                });
+        }
+        setNewSub(() => "");
+        toggleCard();
+        fetchData();
+    }
+
+    function toggleCard() {
+        setShowCard((prev) => !prev);
+    }
 
     return (
         <div className='home-cont'>
@@ -59,10 +92,26 @@ function Home() {
                             </div>
                         )
                     })}
-                    <div className="subject-add">
+                    <div className="subject-add" onClick={() => toggleCard()}>
                         <div className="c">
                             <img src="./images/logo-icon2.png" alt="" />
                             <p>Create Template</p>
+                        </div>
+                    </div>
+
+                    <div className={`overlay ${showCard ? "visible" : ""}`}>
+                        <div className="add-card">
+                            <div className="close">
+                                <button className='close-bttn' onClick={() => toggleCard()}>close</button>
+                            </div>
+                            <div className="sub-create">
+                                <div className="sub-name">
+                                    <input type="text" placeholder='Template Name' value={newSub} onChange={(e) => { setNewSub(() => e.target.value) }} />
+                                </div>
+                                <button className="create" onClick={() => {
+                                    addNewSub();
+                                }}>Create</button>
+                            </div>
                         </div>
                     </div>
                 </div>

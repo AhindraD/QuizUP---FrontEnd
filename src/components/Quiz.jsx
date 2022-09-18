@@ -34,8 +34,27 @@ function Quiz() {
 
     async function fetchData() {
         let resp = await axiosClient.get(`/subject/${subjectID}`);
-        setQuiz(() => resp.data);
+        setQuiz(() => resp.data[0].quiz);
         console.log(resp.data);
+        if (resp.data[0].quiz.length > 0) {
+            setEdit(() => resp.data[0].quiz[0]);
+            setQues(() => resp.data[0].quiz[0].question);
+            setOpt1(() => resp.data[0].quiz[0].option[0].answer);
+            setOpt2(() => resp.data[0].quiz[0].option[1].answer);
+            setOpt3(() => resp.data[0].quiz[0].option[2].answer);
+            setOpt4(() => resp.data[0].quiz[0].option[3].answer);
+
+            let currectArr = [];
+            for (let i = 0; i < resp.data[0].quiz[0].option.length; i++) {
+                if (resp.data[0].quiz[0].option[i].correct) {
+                    currectArr.push(i + 1);
+                }
+            }
+            setCorrect(() => currectArr);
+
+        } else {
+            newQuiz();
+        }
         setLoading(false);
     }
 
@@ -50,6 +69,68 @@ function Quiz() {
             arr.splice(pos, 1);
             setCorrect(() => arr)
         }
+    }
+
+    function changeEditSpace(quiz) {
+        setEdit(() => quiz);
+        setQues(() => quiz.question);
+        setOpt1(() => quiz.option[0].answer);
+        setOpt2(() => quiz.option[1].answer);
+        setOpt3(() => quiz.option[2].answer);
+        setOpt4(() => quiz.option[3].answer);
+
+        let currectArr = [];
+        for (let i = 0; i < quiz.option.length; i++) {
+            if (quiz.option[i].correct) {
+                currectArr.push(i + 1);
+            }
+        }
+        setCorrect(() => currectArr);
+    }
+
+    async function newQuiz() {
+        let quizData = {
+            "question": "What is your question?",
+            "option": [
+                {
+                    "answer": "Choice1",
+                    "correct": false
+                },
+                {
+                    "answer": "Choice2",
+                    "correct": false
+                },
+                {
+                    "answer": "Choice3",
+                    "correct": false
+                },
+                {
+                    "answer": "Choice4",
+                    "correct": false
+                }
+            ],
+            "subject": subjectID,
+            "owner": user._id,
+            "image": fileInputRef.current.files[0]
+        }
+        let response = await fetch(`https://kahoot.up.railway.app/quiz/add`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(quizData),
+        })
+            .catch(error => {
+                window.alert(error);
+                return;
+            });
+        let respData = await response.json();
+        if (respData.error != undefined) {
+            window.alert(respData.error);
+            return;
+        }
+        fetchData();
     }
 
     async function saveQuiz() {
@@ -74,8 +155,8 @@ function Quiz() {
                     "correct": false
                 }
             ],
-            "subject": "6322d6cf96a8a3bfdc45db3b",
-            "owner": "6322d07c95b8f96cf73eee8d",
+            "subject": subjectID,
+            "owner": user._id,
             "image": fileInputRef.current.files[0]
         }
         for (let i = 0; i < correct.length; i++) {
@@ -83,12 +164,25 @@ function Quiz() {
             quizData.option[indx].correct = true;
         }
         console.log(quizData);
+        await fetch(`https://kahoot.up.railway.app/quiz/edit/${edit._id}`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(quizData),
+        })
+            .catch(error => {
+                window.alert(error);
+                return;
+            });
         setQues(() => "");
         setOpt1(() => "");
         setOpt2(() => "");
         setOpt3(() => "");
         setOpt4(() => "");
         setCorrect(() => []);
+        fetchData();
     }
 
 
@@ -104,11 +198,19 @@ function Quiz() {
             {loading ? <h1 style={{ margin: "0 auto" }}>loading...</h1> :
                 <div className="quiz-bottom">
                     <div className="quiz-left">
+                        {quiz.map((elem) => {
+                            return (
+                                <div className="quiz-ind" key={elem._id}>
+                                    <button className="edit-bttn" onClick={() => changeEditSpace(elem)}>Edit</button>
+                                    <button className="delete-bttn" onClick={() => newQuiz()}>Delete</button>
+                                </div>
+                            )
+                        })}
                         <div className="add-quiz">
                             <div className="plus">
                                 <img src="https://github.com/AhindraD/QuizUP---FrontEnd/blob/master/public/images/plus.png?raw=true" alt="" />
                             </div>
-                            <button className="add-quiz-bttn">Add Question</button>
+                            <button className="add-quiz-bttn" onClick={() => newQuiz()}>Add Question</button>
                         </div>
                     </div>
 

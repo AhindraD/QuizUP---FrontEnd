@@ -60,7 +60,8 @@
     padding-top: 20px;
 }
 
-.add-quiz {
+.add-quiz,
+.quiz-ind {
     width: 200px;
     height: 110px;
     display: flex;
@@ -74,6 +75,11 @@
     padding: 10px 0;
 }
 
+.quiz-ind {
+    justify-content: center;
+    gap: 20px;
+}
+
 .plus {
     width: 60px;
     height: 60px;
@@ -85,7 +91,9 @@
     object-fit: cover;
 }
 
-.add-quiz-bttn {
+.add-quiz-bttn,
+.edit-bttn,
+.delete-bttn {
     padding: 3px 30px;
     background-color: #eb001b;
     color: white;
@@ -197,7 +205,7 @@
     border-bottom-left-radius: 5px;
     border: 2px solid rgb(187, 187, 187);
     border-right: none;
-    padding: 0 80px;
+    padding-left: 80px;
     font-size: 27px;
 }
 

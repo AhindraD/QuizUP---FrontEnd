@@ -50,6 +50,7 @@
     width: 100%;
     flex: 1;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     padding: 30px;
     justify-content: flex-start;
@@ -63,13 +64,13 @@
 }
 
 .subject-ind {
-    width: 80%;
+    width: 50%;
     height: 130px;
     border-radius: 11px;
     background-color: rgb(235, 235, 235);
-    padding: 20px 20px;
+    padding: 15px 20px;
     display: flex;
-    gap: 30px;
+    gap: 50px;
     align-items: center;
 }
 
@@ -109,6 +110,7 @@
 }
 
 .sub-title {
+    font-weight: 600;
     background: url("./books.png") no-repeat left;
     background-position: 0px;
     background-size: 25px;
@@ -118,4 +120,31 @@
     background: url("./user.png") no-repeat left;
     background-position: 0px;
     background-size: 25px;
+}
+
+.c3 {
+    height: 100%;
+    width: fit-content;
+    margin-left: auto;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.edit,
+.start {
+    width: 70px;
+    padding: 1px 0;
+    background-color: #eb001b;
+    color: white;
+    font-size: 17px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 0px #3800069e;
+    transition: all 300ms ease;
+}
+
+.edit:hover,
+.start:hover {
+    box-shadow: 1px 1px 0 0px #3800069e;
 }

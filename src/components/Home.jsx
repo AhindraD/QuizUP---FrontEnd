@@ -20,7 +20,7 @@ function Home() {
         async function fetchData() {
             let resp = await axiosClient.get("/subject/all");
             setSubjects(() => resp.data);
-            console.log(resp);
+            console.log(resp.data);
             setLoading(false);
         }
     }, [])
@@ -40,7 +40,7 @@ function Home() {
                     <p className='temps'>Templates: </p>
                     {subjects.map((elem) => {
                         return (
-                            <div className="subject-ind">
+                            <div className="subject-ind" key={elem._id}>
                                 <div className="c1">
                                     <img src="./images/logo-icon2.png" alt="" />
                                 </div>
@@ -48,7 +48,11 @@ function Home() {
                                     <div className="sub-title">{elem.name}</div>
                                     <div className="sub-owner">{elem.owner.name}</div>
                                 </div>
-                                <div className="c3"></div>
+                                <div className="c3">
+                                    <button className="edit">Edit</button>
+                                    <button className="start">Start</button>
+                                    <p className="time">{elem.createdAt}</p>
+                                </div>
                             </div>
                         )
                     })}

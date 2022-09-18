@@ -34,7 +34,7 @@ function Quiz() {
     }
 
     async function saveQuiz() {
-
+        //("image", fileInputRef.current.files[0]
     }
 
 
@@ -52,7 +52,7 @@ function Quiz() {
                     <div className="quiz-left">
                         <div className="add-quiz">
                             <div className="plus">
-                                <img src="https://raw.githubusercontent.com/AhindraD/QuizUP---FrontEnd/master/public/images/plus.png" alt="" />
+                                <img src="https://github.com/AhindraD/QuizUP---FrontEnd/blob/master/public/images/plus.png?raw=true" alt="" />
                             </div>
                             <button className="add-quiz-bttn">Add Question</button>
                         </div>
@@ -60,7 +60,7 @@ function Quiz() {
 
                     <div className="quiz-right">
                         <div className="question">
-                            <input type="text" placeholder='What is yor question?' />
+                            <input type="text" placeholder='What is your question?' />
                         </div>
                         <div className="ques-img">
                             <input
@@ -70,6 +70,18 @@ function Quiz() {
                                 ref={fileInputRef}
                                 type="file"
                             />
+                        </div>
+                        <div className="ques-opts">
+                            <div className={`opt opt1`}>
+                                <input type="text" placeholder='Choice 1' />
+                                
+                            </div>
+                            <div className={`opt opt2`}>
+                                <input type="text" placeholder='Choice 2' /></div>
+                            <div className={`opt opt3`}>
+                                <input type="text" placeholder='Choice 3' /></div>
+                            <div className={`opt opt4`}>
+                                <input type="text" placeholder='Choice 4' /></div>
                         </div>
                     </div>
                 </div>

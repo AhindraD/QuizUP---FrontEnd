@@ -71,6 +71,7 @@
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
+    padding: 10px 0;
 }
 
 .plus {
@@ -99,10 +100,107 @@
 
 
 .quiz-right {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
     padding: 20px;
+}
+
+.question {
+    width: 700px;
+    height: 50px;
+}
+
+.question input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: 2px solid rgb(206, 206, 206);
+    padding: 0 80px;
+    font-size: 27px;
+
+    font-weight: 600;
+    background: url("./books.png") no-repeat left;
+    background-position: 25px;
+    background-size: 30px;
+    background-color: #ffffff;
+}
+
+.ques-img {
+    height: 250px;
+    width: 400px;
+}
+
+.ques-img input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: 2px solid rgb(206, 206, 206);
+    padding: 0 40px;
+    font-size: 27px;
+    margin: 0 auto;
+
+    font-weight: 600;
+    background-color: #f4f3f3;
+}
+
+
+.ques-opts {
+    width: 850px;
+    height: 150px;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 50px;
+}
+
+.opt {
+    width: 400px;
+    height: 50px;
+}
+
+.opt input {
+    cursor: pointer;
+    width: 80%;
+    height: 100%;
+    border-radius: 5px;
+    border: 2px solid rgb(206, 206, 206);
+    padding: 0 80px;
+    font-size: 27px;
+}
+
+.opt1 input {
+    font-weight: 600;
+    background: url("./letter-a.png") no-repeat left;
+    background-position: 25px;
+    background-size: 30px;
+    background-color: #ffffff;
+}
+
+.opt2 input {
+    font-weight: 600;
+    background: url("./letter-b.png") no-repeat left;
+    background-position: 25px;
+    background-size: 30px;
+    background-color: #ffffff;
+}
+
+.opt3 input {
+    font-weight: 600;
+    background: url("./letter-c.png") no-repeat left;
+    background-position: 25px;
+    background-size: 30px;
+    background-color: #ffffff;
+}
+
+.opt4 input {
+    font-weight: 600;
+    background: url("./letter-d.png") no-repeat left;
+    background-position: 25px;
+    background-size: 30px;
+    background-color: #ffffff;
 }

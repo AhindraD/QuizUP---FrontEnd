@@ -4,16 +4,39 @@
     display: flex;
     flex-direction: column;
     padding: 30px 50px;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     background-color: #c60017;
     color: white;
     gap: 30px;
+    padding: 30px 60px;
 }
 
-.home-bttn {
-    width: 120px;
-    padding: 2px 0;
+.leaderboard-cont .title {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 45px;
+    font-weight: 700;
+    cursor: pointer;
+    text-shadow: 1px 1px 3px black;
+}
+
+.leaderboard-cont .title svg {
+    height: 60px;
+    width: 60px;
+}
+
+
+.leaderboard-cont .row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.leaderboard-cont .home-bttn {
+    height: 50px;
+    padding: 0px 60px;
     color: #eb001b;
     background-color: white;
     font-size: 25px;
@@ -26,4 +49,22 @@
 
 .home-bttn:hover {
     box-shadow: 1px 1px 3px 0px #3800069e;
+}
+
+.dash {
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 11px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+    align-items: center;
+}
+
+.dash-title {
+    color: rgb(57, 57, 57);
+    font-weight: 700;
+    font-size: 45px;
 }

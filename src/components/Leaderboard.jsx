@@ -2,6 +2,7 @@ import React from 'react'
 import "../CSS/leaderboard.css"
 import { useEffect, useState, useContext, useRef } from 'react'
 import { UserContext, socket } from "../Contexts/UserContext";
+import GiNestedHexagons from '../CSS/logo';
 import axiosClient from '../ApiConfig';
 import { useNavigate, Link, useParams } from 'react-router-dom';
 
@@ -21,10 +22,13 @@ function Leaderboard() {
 
     return (<>{loading ? <h1>Loading...</h1> :
         <div className='leaderboard-cont'>
-            <p className="title">QuizUp</p>
+            <div className="title"><GiNestedHexagons />QuizUp</div>
             <div className="row">
                 <p className="title">Congratulations!!!</p>
                 <button onClick={() => navigate("/home")} className='home-bttn'  >HOME</button>
+            </div>
+            <div className="dash">
+                <p className="dash-title">Dashboard</p>
             </div>
         </div>}
     </>

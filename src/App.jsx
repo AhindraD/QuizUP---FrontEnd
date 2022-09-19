@@ -7,6 +7,8 @@ import { useState } from 'react';
 import Home from './components/Home';
 import Quiz from './components/Quiz';
 import StartGame from './components/StartGame';
+import JoinBatch from './components/JoinBatch';
+import GameOn from './components/GameOn';
 
 function App() {
   const goTo = useNavigate();
@@ -31,6 +33,8 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/subject/:id' element={<Quiz />} />
           <Route path='/start/:id' element={<StartGame />} />
+          <Route path='/join/:id' element={<JoinBatch />} />
+          <Route path='/gameon/:id' element={<GameOn />} />
         </Routes>
       </div >
     </UserContext.Provider>

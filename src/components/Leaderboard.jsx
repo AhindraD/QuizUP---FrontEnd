@@ -8,7 +8,7 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 
 function Leaderboard() {
     let navigate = useNavigate();
-    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr } = useContext(UserContext);
+    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, setQuizArr, reportArr, setReportArr } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     useEffect(() => {
         if (user == null) {
@@ -17,6 +17,7 @@ function Leaderboard() {
             setRefreshToken(() => localStorage.getItem("refresh_token"));
             setQuizArr(() => JSON.parse(localStorage.getItem("quizArr")))
         }
+        console.log(reportArr);
         setLoading(false);
     }, [])
 

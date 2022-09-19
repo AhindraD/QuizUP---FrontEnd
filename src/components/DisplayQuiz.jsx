@@ -7,7 +7,7 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 
 function DisplayQuiz() {
     let navigate = useNavigate();
-    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr, room, setRoom } = useContext(UserContext);
+    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr, room, setRoom, reportArr, setReportArr } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     let [index, setIndex] = useState(0);
     let [correctAns, setCorrectAns] = useState([]);
@@ -40,15 +40,19 @@ function DisplayQuiz() {
         setCorrectAns(() => arr);
     }
 
+    socket.on("student-submitted", (data) => {
+        setReportArr(() => data.reportArr.slice());
+        navigate("/leaderboard");
+    })
+
+
     function nextQuestion() {
         if (index < quizArr.length - 1) {
             setIndex((prev) => prev + 1);
             getCorrect();
             socket.emit("change-quiz", { room })
         } else {
-            // 
             socket.emit("end-game", { room, correctAns });
-            navigate("/leaderboard");
         }
     }
 

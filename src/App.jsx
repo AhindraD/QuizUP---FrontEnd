@@ -20,6 +20,7 @@ function App() {
   let [quizArr, setQuizArr] = useState([]);
   let [room, setRoom] = useState(null);
   let [studentProfile, setStudentProfile] = useState({});
+  let [reportArr, setReportArr] = useState([]);
 
   function logout() {
     localStorage.setItem("access_token", "");
@@ -29,7 +30,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr, studentProfile, setStudentProfile, room, setRoom }}>
+    <UserContext.Provider value={{ user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr, studentProfile, setStudentProfile, room, setRoom, reportArr, setReportArr }}>
       <div className="App">
         <Routes>
           <Route path='/' element={<LogIn />} />

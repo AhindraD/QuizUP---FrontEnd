@@ -11,13 +11,25 @@ function GameOn() {
     let [option, setOption] = useState(0);
     let [lock, setLock] = useState(false);
     let [ans, setAns] = useState([]);
+    let [qNo, setQNo] = useState(1);
     function select(n) {
         if (!lock) {
             setOption(() => n);
-            setLock((prev) => !prev);
-            
+            setLock((prev) => true);
         }
     }
+    socket.on("quiz-changed", (data) => {
+        let currArr = ans.slice();
+        currArr.push(option);
+        setAns(() => currArr);
+        setLock((prev) => false);
+        setOption(() => 0);
+        setQNo((prev) => prev + 1);
+    })
+
+    socket.on("game-ended", (data) => {
+        socket.emit("submit-all", { room, answers: ans, studentID: socket.id });
+    });
 
     return (
         <div className='gameon-cont'>
@@ -25,7 +37,7 @@ function GameOn() {
                 <GiNestedHexagons />
                 QuizUp
             </div>
-            <p className="q-no">Question No: {1}</p>
+            <p className="q-no">Question No: {qNo}</p>
             <div className="gameon-card">
                 <p className='ch'>Choices</p>
                 <div className="game-opts">

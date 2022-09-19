@@ -40,7 +40,7 @@ function App() {
           <Route path='/leaderboard' element={<Leaderboard/>} />
 
           <Route path='/join/:id' element={<JoinBatch />} />
-          <Route path='/gameon/:id' element={<GameOn />} />
+          <Route path='/gameon' element={<GameOn />} />
         </Routes>
       </div >
     </UserContext.Provider>

@@ -1,8 +1,15 @@
 import React from 'react'
+import "../CSS/student.css"
+import { useEffect, useState, useContext, useRef } from 'react'
+import { UserContext, socket } from "../Contexts/UserContext";
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
 function GameOn() {
     return (
-        <div>GameOn</div>
+        <div className='join-cont'>
+            <div className="gameon-card">
+            </div>
+        </div>
     )
 }
 

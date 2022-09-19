@@ -9,9 +9,8 @@ import { QRCodeSVG } from 'qrcode.react';
 function StartGame() {
     const subjectID = useParams().id;
     let navigate = useNavigate();
-    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr } = useContext(UserContext);
+    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr, room, setRoom } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
-    let [room, setRoom] = useState(true);
     let [students, setStudents] = useState([]);
     let [quiz, setQuiz] = useState(null);
 
@@ -33,12 +32,23 @@ function StartGame() {
         setRoom(() => randomK);
         setQuizArr(() => resp.data[0].quiz);
         localStorage.setItem("quizArr", JSON.stringify(resp.data[0].quiz));
+        localStorage.setItem("roomID", randomK);
         socket.emit("create-room", { roomID: randomK, owner: socket.id, quizArr: resp.data[0].quiz, subjectID });
+        socket.on("room-created", (data) => {
+            //newStudent, students 
+            //setStudents(() => data.students);
+        });
         socket.on("room-joined", (data) => {
             //newStudent, students 
             setStudents(() => data.students);
         });
     }
+
+    function startGame() {
+        socket.emit("start-game", { roomID: room, owner: socket.id, quizArr, subjectID });
+        navigate("/display");
+    }
+
     //http://localhost:8000/
     //https://kahoot.up.railway.app/
 
@@ -66,7 +76,7 @@ function StartGame() {
                         <div className="start-right">
                             <QRCodeSVG value={`http://localhost:8000/join/${room}`} height="400" width="400" fgColor="black" includeMargin="false" />
                             <p className="code">Game PIN: <b>{room}</b></p>
-                            <button className='start-bttn' onClick={() => navigate("/display")}>Start Game</button>
+                            <button className='start-bttn' onClick={() => startGame()}>Start Game</button>
                         </div>
 
                     </div>

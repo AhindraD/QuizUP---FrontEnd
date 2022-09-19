@@ -4,29 +4,50 @@ import { useEffect, useState, useContext, useRef } from 'react'
 import { UserContext, socket } from "../Contexts/UserContext";
 import axiosClient from '../ApiConfig';
 import { useNavigate, Link, useParams } from 'react-router-dom';
-import { QRCodeSVG } from 'qrcode.react';
 
 function DisplayQuiz() {
     let navigate = useNavigate();
-    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr } = useContext(UserContext);
+    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr, room, setRoom } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     let [index, setIndex] = useState(0);
+    let [correctAns, setCorrectAns] = useState([]);
+
     useEffect(() => {
         if (user == null) {
             setUser(() => JSON.parse(localStorage.getItem("user_data")));
             setToken(() => localStorage.getItem("access_token"));
             setRefreshToken(() => localStorage.getItem("refresh_token"));
+            setRoom(() => localStorage.getItem("roomID"));
             setQuizArr(() => JSON.parse(localStorage.getItem("quizArr")))
         }
         if (quizArr.length > 0) {
             setLoading(false);
+            getCorrect();
         }
     }, [quizArr])
+
+    function getCorrect() {
+        let correct = 0;
+        for (let i = 0; i < quizArr[index].option.length; i++) {
+            let isCorrect = quizArr[index].option[i].correct;
+            if (isCorrect) {
+                correct = i + 1;
+                break;
+            }
+        }
+        let arr = correctAns.slice();
+        arr.push(correct);
+        setCorrectAns(() => arr);
+    }
 
     function nextQuestion() {
         if (index < quizArr.length - 1) {
             setIndex((prev) => prev + 1);
+            getCorrect();
+            socket.emit("change-quiz", { room })
         } else {
+            // 
+            socket.emit("end-game", { room, correctAns });
             navigate("/leaderboard");
         }
     }

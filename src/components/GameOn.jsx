@@ -7,9 +7,16 @@ import GiNestedHexagons from '../CSS/logo';
 
 function GameOn() {
     const navigate = useNavigate();
+    let { studentProfile, setStudentProfile, room, setRoom } = useContext(UserContext);
     let [option, setOption] = useState(0);
+    let [lock, setLock] = useState(false);
+    let [ans, setAns] = useState([]);
     function select(n) {
-        setOption(() => n);
+        if (!lock) {
+            setOption(() => n);
+            setLock((prev) => !prev);
+            
+        }
     }
 
     return (

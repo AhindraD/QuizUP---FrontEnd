@@ -27,6 +27,7 @@ function DisplayQuiz() {
 
         socket.on("student-submitted", (data) => {
             setReportArr(() => data.report);
+            //console.log(data.report);
             navigate("/leaderboard");
         })
     }, [])
@@ -42,7 +43,7 @@ function DisplayQuiz() {
         }
         let arr = correctAns.slice();
         arr.push(correct);
-        setCorrectAns(() => arr);
+        setCorrectAns(() => arr.slice());
     }
 
 

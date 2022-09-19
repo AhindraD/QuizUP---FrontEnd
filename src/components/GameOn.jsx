@@ -10,26 +10,28 @@ function GameOn() {
     let { studentProfile, setStudentProfile, room, setRoom } = useContext(UserContext);
     let [option, setOption] = useState(0);
     let [lock, setLock] = useState(false);
-    let [ans, setAns] = useState([]);
+    let [answers, setAns] = useState([]);
     let [qNo, setQNo] = useState(1);
     function select(n) {
         if (!lock) {
             setOption(() => n);
             setLock((prev) => true);
+            let currArr = answers.slice();
+            currArr.push(n);
+            console.log(currArr);
+            setAns(() => currArr.slice());
         }
     }
     useEffect(() => {
         socket.on("quiz-changed", (data) => {
-            let currArr = ans.slice();
-            currArr.push(option);
-            setAns(() => currArr);
             setLock((prev) => false);
             setOption(() => 0);
             setQNo((prev) => prev + 1);
         })
 
         socket.on("game-ended", (data) => {
-            socket.emit("submit-all", { room, answers: ans, studentID: socket.id });
+            console.log(answers);
+            socket.emit("submit-all", { room, answers, studentID: socket.id });
         });
         socket.on("get-result", (data) => {
             setStudentProfile(() => data.report);

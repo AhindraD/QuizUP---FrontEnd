@@ -10,6 +10,7 @@ import StartGame from './components/StartGame';
 import JoinBatch from './components/JoinBatch';
 import GameOn from './components/GameOn';
 import DisplayQuiz from './components/DisplayQuiz';
+import Leaderboard from './components/Leaderboard';
 
 function App() {
   const goTo = useNavigate();
@@ -35,7 +36,9 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/subject/:id' element={<Quiz />} />
           <Route path='/start/:id' element={<StartGame />} />
-          <Route path='/display' element={<DisplayQuiz/>} />
+          <Route path='/display' element={<DisplayQuiz />} />
+          <Route path='/leaderboard' element={<Leaderboard/>} />
+
           <Route path='/join/:id' element={<JoinBatch />} />
           <Route path='/gameon/:id' element={<GameOn />} />
         </Routes>

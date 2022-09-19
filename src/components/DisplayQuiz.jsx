@@ -23,16 +23,25 @@ function DisplayQuiz() {
         }
     }, [quizArr])
 
+    function nextQuestion() {
+        if (index < quizArr.length - 1) {
+            setIndex((prev) => prev + 1);
+        } else {
+            navigate("/leaderboard");
+        }
+    }
+
     return (
         <>{loading ? <h1>Loading...</h1> :
             <div className='display-cont'>
+                <button className='next-bttn' onClick={() => nextQuestion()}>NEXT</button>
                 <p className="q-no">Qusetion NO: {index + 1}</p>
                 <p className="display-ques">{quizArr[index].question}</p>
                 <div className="mid">
                     <div className="image">
                         <img src={quizArr[index].imageUrl.includes("undefined") ? `https://source.unsplash.com/random/?landscape` : quizArr[index].imageUrl} alt="" />
                     </div>
-                    <div className="stat">
+                    {/* <div className="stat">
                         <div className="row">
                             <img src="../images/letter-a.png" alt="" />
                         </div>
@@ -45,7 +54,7 @@ function DisplayQuiz() {
                         <div className="row">
                             <img src="../images/letter-d.png" alt="" />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="display-opts">
                     <div className={`opt opt1`}>

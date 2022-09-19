@@ -30,6 +30,10 @@ function GameOn() {
     socket.on("game-ended", (data) => {
         socket.emit("submit-all", { room, answers: ans, studentID: socket.id });
     });
+    socket.on("get-result", (data) => {
+        setStudentProfile(() => data.report);
+        console.log(data.report)
+    });
 
     return (
         <div className='gameon-cont'>

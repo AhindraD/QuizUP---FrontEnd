@@ -74,7 +74,7 @@ function StartGame() {
                                 })}
                         </div>
                         <div className="start-right">
-                            <QRCodeSVG value={`http://localhost:8000/join/${room}`} height="400" width="400" fgColor="black" includeMargin="false" />
+                            <QRCodeSVG value={`https://kahoot.up.railway.app/join/${room}`} height="400" width="400" fgColor="black" includeMargin="false" />
                             <p className="code">Game PIN: <b>{room}</b></p>
                             <button className='start-bttn' onClick={() => startGame()}>Start Game</button>
                         </div>

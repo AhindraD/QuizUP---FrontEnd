@@ -24,7 +24,12 @@ function DisplayQuiz() {
             setLoading(false);
             getCorrect();
         }
-    }, [quizArr])
+
+        socket.on("student-submitted", (data) => {
+            setReportArr(() => data.report);
+            navigate("/leaderboard");
+        })
+    }, [])
 
     function getCorrect() {
         let correct = 0;
@@ -39,11 +44,6 @@ function DisplayQuiz() {
         arr.push(correct);
         setCorrectAns(() => arr);
     }
-
-    socket.on("student-submitted", (data) => {
-        setReportArr(() => data.reportArr.slice());
-        navigate("/leaderboard");
-    })
 
 
     function nextQuestion() {

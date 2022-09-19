@@ -18,22 +18,24 @@ function GameOn() {
             setLock((prev) => true);
         }
     }
-    socket.on("quiz-changed", (data) => {
-        let currArr = ans.slice();
-        currArr.push(option);
-        setAns(() => currArr);
-        setLock((prev) => false);
-        setOption(() => 0);
-        setQNo((prev) => prev + 1);
-    })
+    useEffect(() => {
+        socket.on("quiz-changed", (data) => {
+            let currArr = ans.slice();
+            currArr.push(option);
+            setAns(() => currArr);
+            setLock((prev) => false);
+            setOption(() => 0);
+            setQNo((prev) => prev + 1);
+        })
 
-    socket.on("game-ended", (data) => {
-        socket.emit("submit-all", { room, answers: ans, studentID: socket.id });
-    });
-    socket.on("get-result", (data) => {
-        setStudentProfile(() => data.report);
-        console.log(data.report)
-    });
+        socket.on("game-ended", (data) => {
+            socket.emit("submit-all", { room, answers: ans, studentID: socket.id });
+        });
+        socket.on("get-result", (data) => {
+            setStudentProfile(() => data.report);
+            console.log(data.report)
+        });
+    }, [])
 
     return (
         <div className='gameon-cont'>

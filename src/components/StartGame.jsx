@@ -22,6 +22,14 @@ function StartGame() {
         }
         fetchData();
         setLoading(false);
+        socket.on("room-created", (data) => {
+            //newStudent, students 
+            //setStudents(() => data.students);
+        });
+        socket.on("new-student", (data) => {
+            //newStudent, students 
+            setStudents(() => data.students);
+        });
     }, [])
 
     async function fetchData() {
@@ -34,14 +42,6 @@ function StartGame() {
         localStorage.setItem("quizArr", JSON.stringify(resp.data[0].quiz));
         localStorage.setItem("roomID", randomK);
         socket.emit("create-room", { roomID: randomK, owner: socket.id, quizArr: resp.data[0].quiz, subjectID });
-        socket.on("room-created", (data) => {
-            //newStudent, students 
-            //setStudents(() => data.students);
-        });
-        socket.on("room-joined", (data) => {
-            //newStudent, students 
-            setStudents(() => data.students);
-        });
     }
 
     function startGame() {

@@ -11,13 +11,16 @@ function JoinBatch() {
     let [student, setStudent] = useState('');
     let [waiting, setWaiting] = useState(false);
 
-    socket.on("room-joined", (data) => {
-        setWaiting(() => true);
-        setStudentProfile(() => data.newStudent)
-    })
-    socket.on("game-started", (data) => {
-        navigate("/gameon");
-    })
+    useEffect(() => {
+        socket.on("room-joined", (data) => {
+            setWaiting(() => true);
+            setStudentProfile(() => data.newStudent)
+        })
+        socket.on("game-started", (data) => {
+            navigate("/gameon");
+        })
+    }, [])
+    
     function joinGame() {
         if (student.length > 0) {
             socket.emit("join-room", { roomID, name: student, joiner: socket.id });

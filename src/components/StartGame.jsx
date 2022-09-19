@@ -9,7 +9,7 @@ import { QRCodeSVG } from 'qrcode.react';
 function StartGame() {
     const subjectID = useParams().id;
     let navigate = useNavigate();
-    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout } = useContext(UserContext);
+    let { user, setUser, token, setToken, refreshToken, setRefreshToken, logout, quizArr, setQuizArr } = useContext(UserContext);
     let [loading, setLoading] = useState(true);
     let [room, setRoom] = useState(true);
     let [students, setStudents] = useState([]);
@@ -30,7 +30,9 @@ function StartGame() {
         setQuiz(() => resp.data[0].quiz);
         let randomK = Math.random().toString().substring(3, 11);
         //console.log(randomK);
-        setRoom(() => randomK)
+        setRoom(() => randomK);
+        setQuizArr(() => resp.data[0].quiz);
+        localStorage.setItem("quizArr", JSON.stringify(resp.data[0].quiz));
         socket.emit("create-room", { roomID: randomK, owner: socket.id, quizArr: resp.data[0].quiz, subjectID });
         socket.on("room-joined", (data) => {
             //newStudent, students 
@@ -64,7 +66,7 @@ function StartGame() {
                         <div className="start-right">
                             <QRCodeSVG value={`http://localhost:8000/join/${room}`} height="400" width="400" fgColor="black" includeMargin="false" />
                             <p className="code">Game PIN: <b>{room}</b></p>
-                            <button className='start-bttn'>Start Game</button>
+                            <button className='start-bttn' onClick={() => navigate("/display")}>Start Game</button>
                         </div>
 
                     </div>

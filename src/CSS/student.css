@@ -1,4 +1,5 @@
-.join-cont {
+.join-cont,
+.gameon-cont {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -31,14 +32,16 @@
     object-fit: cover;
 }
 
-.pin{
+.pin {
     font-size: 19px;
 }
-.name{
+
+.name {
     width: 260px;
     height: 40px;
 }
-.name input{
+
+.name input {
     width: 100%;
 }
 
@@ -56,4 +59,81 @@
 
 .enter:hover {
     box-shadow: 1px 1px 0 0px #3800069e;
+}
+
+
+.gameon-cont {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.gameon-cont .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 45px;
+    font-weight: 700;
+    cursor: pointer;
+    text-shadow: 1px 1px 3px black;
+}
+
+.gameon-cont .logo svg {
+    height: 60px;
+    width: 60px;
+}
+
+.gameon-cont .q-no {
+    color: white;
+}
+
+.gameon-card {
+    margin-top: 30px;
+    height: 380px;
+    width: 340px;
+    border-radius: 11px;
+    background-color: #d7d7d7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+.ch {
+    font-size: 33px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.74);
+}
+
+.game-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row1 {
+    display: flex;
+    gap: 10px;
+}
+
+.g-opts {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.g-opts img {
+    height: 30%;
+    width: 30%;
+    object-fit: cover;
+}
+
+.mark {
+    background-color: rgba(81, 255, 0, 0.411);
 }

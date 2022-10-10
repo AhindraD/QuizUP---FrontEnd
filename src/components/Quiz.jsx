@@ -35,7 +35,7 @@ function Quiz() {
     async function fetchData() {
         let resp = await axiosClient.get(`/subject/${subjectID}`);
         setQuiz(() => resp.data[0].quiz);
-        console.log(resp.data);
+        //console.log(resp.data);
         if (resp.data[0].quiz.length > 0) {
             setEdit(() => resp.data[0].quiz[0]);
             setQues(() => resp.data[0].quiz[0].question);

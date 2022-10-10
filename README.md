@@ -27,8 +27,8 @@ An application that follows the blended learning techniques. This application wi
 
 - From this point, the teacher's screen is projected physcally on front of the students if it is a physical session or screen shared if it is an online session. In this requirement, the teacher can chose any template and click the start button. When the teacher starts the session, a game screen will be shown along with unique numeric number that can identify the game session easily. This numeric pin will be used by the students to join the session. Moreover, there is a QR Code generated for every session so that the students can scan the QR Code instead of entering the game pin. 
 
-![Game Scene 1](./images/game%201.png)
-![Game Scene 2](./images/game%202.png)
+![Game Scene 1](./images/start-1.PNG)
+![Game Scene 2](./images/start-2.PNG)
 
 - When the teacher presses 'Start', the questions will be shown with a timer and each one of the student can see the teacher's screen and can choose the choices from their own device (Phone or Laptop). The question screen will show the 'question text', 'image', 'choices text', 'live statistics about the current chosen choices', and 'timer'. The question screen should appear as follows.
 
@@ -47,7 +47,7 @@ An application that follows the blended learning techniques. This application wi
 
 - Students screens are only for the ones within game session will enter the link for the app and actually write their own pin within the box as shown in the folllowing screen.
 
-![Login Scene](./images/screen-game.png)
+![Login Scene](./images/student-join.png)
 
 - While the question is shown, the answer can be shown as follows.
 

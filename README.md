@@ -47,7 +47,7 @@ An application that follows the blended learning techniques. This application wi
 
 - Students screens are only for the ones within game session will enter the link for the app and actually write their own pin within the box as shown in the folllowing screen.
 
-![Login Scene](./images/student-join.png)
+![Login Scene](./images/student-join.PNG)
 
 - While the question is shown, the answer can be shown as follows.
 

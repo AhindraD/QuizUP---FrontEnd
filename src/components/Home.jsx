@@ -24,7 +24,7 @@ function Home() {
 
     async function fetchData() {
         let resp = await axiosClient.get("/subject/all");
-        setSubjects(() => resp.data);
+        setSubjects(() => resp.data.filter((elem) => elem.owner._id === user._id));
         console.log(resp.data);
         setLoading(false);
     }

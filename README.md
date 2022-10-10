@@ -32,11 +32,8 @@ An application that follows the blended learning techniques. This application wi
 
 - When the teacher presses 'Start', the questions will be shown with a timer and each one of the student can see the teacher's screen and can choose the choices from their own device (Phone or Laptop). The question screen will show the 'question text', 'image', 'choices text', 'live statistics about the current chosen choices', and 'timer'. The question screen should appear as follows.
 
-![Question 1 Scene](./images/question%201.png)
+![Question 1 Scene](./images/ques-1.PNG)
 
-- After the timer finishes, the correct answer should appear along with a next button for the teacher to move to the next question in the quiz as in the following screen.
-
-![Question 2 Scene](./images/question%202.png)
 
 - After the game session, there will be a dashboard screen showing the attendees with their scoring and they are sorted based on their ranks, and if their ranks are equal, then they are sorted in an alpapetical order as shown in the following screen.
 

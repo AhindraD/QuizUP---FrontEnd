@@ -48,7 +48,7 @@ An application that follows the blended learning techniques. This application wi
 
 - While the question is shown, the answer can be shown as follows.
 
-![Choices Scene](./images/choices-mobile.png)
+![Choices Scene](./images/student-ans.PNG)
 
 - If the student has made a choice and the timer didn't finish, this screen should appear to the student.
 

@@ -113,7 +113,7 @@ function Quiz() {
             "owner": user._id,
             "image": fileInputRef.current.files[0]
         }
-        let response = await fetch(`https://kahoot.up.railway.app/quiz/add`, {
+        let response = await fetch(`https://quiz-jwgl.onrender.com/quiz/add`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -164,7 +164,7 @@ function Quiz() {
             quizData.option[indx].correct = true;
         }
         console.log(quizData);
-        await fetch(`https://kahoot.up.railway.app/quiz/edit/${edit._id}`, {
+        await fetch(`https://quiz-jwgl.onrender.com/quiz/edit/${edit._id}`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -186,7 +186,7 @@ function Quiz() {
     }
 
     async function deleteQuiz(quizID) {
-        let response = await fetch(`https://kahoot.up.railway.app/quiz/delete/${quizID}`, {
+        let response = await fetch(`https://quiz-jwgl.onrender.com/quiz/delete/${quizID}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`,

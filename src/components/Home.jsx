@@ -37,7 +37,7 @@ function Home() {
                 owner: user._id
             };
             //console.log(dataObj);
-            await fetch("https://kahoot.up.railway.app/subject/add", {
+            await fetch("https://quiz-jwgl.onrender.com/subject/add", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

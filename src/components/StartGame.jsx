@@ -51,6 +51,7 @@ function StartGame() {
 
     //http://localhost:8000/
     //https://kahoot.up.railway.app/
+    //https://quiz-jwgl.onrender.com/
 
     return (
         <div className='start-cont'>
@@ -74,7 +75,7 @@ function StartGame() {
                                 })}
                         </div>
                         <div className="start-right">
-                            <QRCodeSVG value={`https://kahoot.up.railway.app/join/${room}`} height="400" width="400" fgColor="black" includeMargin="false" />
+                            <QRCodeSVG value={`https://quiz-jwgl.onrender.com/join/${room}`} height="400" width="400" fgColor="black" includeMargin="false" />
                             <p className="code">Game PIN: <b>{room}</b></p>
                             <button className='start-bttn' onClick={() => startGame()}>Start Game</button>
                         </div>

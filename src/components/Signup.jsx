@@ -20,7 +20,7 @@ export default function SignUp() {
             password,
             confirmPassword,
         };
-        let response = await fetch("https://kahoot.up.railway.app/auth/signup", {
+        let response = await fetch("https://quiz-jwgl.onrender.com/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -17,7 +17,7 @@ export default function LogIn() {
             password,
         };
         //console.log(userInfo);
-        let response = await fetch("https://kahoot.up.railway.app/auth/login", {
+        let response = await fetch("https://quiz-jwgl.onrender.com/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
